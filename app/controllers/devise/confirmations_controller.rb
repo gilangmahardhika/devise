@@ -9,7 +9,7 @@ class Devise::ConfirmationsController < ApplicationController
 
   # POST /resource/confirmation
   def create
-    self.resource = resource_class.send_confirmation_instructions(params[resource_name])
+    self.resource = resource_class.unscoped.send_confirmation_instructions(params[resource_name])
 
     if resource.errors.empty?
       set_flash_message :notice, :send_instructions
